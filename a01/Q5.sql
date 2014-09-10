@@ -4,7 +4,7 @@
 
 SELECT r.r_name, n.n_name # select the region name and nation name
 FROM REGION r # from the region table (alias r)
-LEFT JOIN NATION n # joined on the nation table (alias n), LEFT JOIN forces the NULL result if no nations are in a region
+LEFT OUTER JOIN NATION n # joined on the nation table (alias n), LEFT OUTER JOIN forces the NULL result if no nations are in a region
 ON r.r_regionkey = n.n_regionkey # match the foreign keys
 ORDER BY r.r_name, n.n_name ASC # order by region name, then nation name alphabetically
 ;
