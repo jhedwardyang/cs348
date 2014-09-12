@@ -3,6 +3,8 @@
 # Management wants to ensure that our best customer in every country is taken care of by specially trained customer representatives. For each nation list the nation name, customer name and the largest account balance of the customer located in that nation. For this question you can assume that every nation contains at least one customer that has at least one order.
 # In your physical submission explain whether your solution will work when the assumption that every nation contains at least one customer that has at least one order is taken away.
 
+# Strategy: Generate an intermediate query which will find the maximum balance per nation. Ensure that you use the proper RIGHT join in case there is no customer in that nation. Afterwards find that customer and LEFT join to ensure no customer case. Afterwards find the customer with that maximum balance. :) 
+
 SELECT t.nationname, c.c_name, t.maxacctbal # select nation name, customer name, max account balance
 FROM 
 ( # inner table
