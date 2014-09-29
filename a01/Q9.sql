@@ -6,7 +6,7 @@
 
 # Strategy: Find the average number of orders per nation in a subquery then use that in the HAVING clause
 
-SELECT n.n_name nation_name, COUNT(c) total_orders # select count, nationkey
+SELECT n.n_name nation_name, SUM(c) total_orders # select count, nationkey
 FROM ( # from subquery
 	SELECT o.o_custkey, COUNT(*) c, c.c_nationkey # get all custkeys, with total order count, and nationkey
 	FROM ORDERS o # orders
@@ -17,10 +17,10 @@ FROM ( # from subquery
 JOIN NATION n # joined on nation table
 ON t.c_nationkey = n.n_nationkey # on foreign key
 GROUP BY t.c_nationkey # grouped by the nation key
-HAVING total_orders > ( # where the count of the nations orders if greator than
+HAVING total_orders < ( # where the count of the nations orders if greator than
 	SELECT AVG(t2.count) # average of all count
 	FROM (
-		SELECT COUNT(c) count, n.n_nationkey # number of all orders
+		SELECT SUM(c) count, n.n_nationkey # number of all orders
 		FROM (
 			SELECT o.o_custkey, COUNT(*) c, c.c_nationkey
 			FROM ORDERS o
@@ -34,4 +34,4 @@ HAVING total_orders > ( # where the count of the nations orders if greator than
 	) t2
 )
 ORDER BY nation_name, total_orders ASC
-;
+;	
