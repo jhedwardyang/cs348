@@ -33,7 +33,7 @@
 \item $\pi_{c\_custkey, c\_name, c\_phone} (\sigma_{c\_acctbal < 0} (\sigma_{n\_name=Canada}(Cust \Join_{c\_nationkey = n\_nationkey} Nati)))$
 \item $p(_{c\_name \to name, c\_phone \to phone},\pi_{c\_name, c\_phone} (\sigma_{c\_acctbal > 9975} (Cust))) \bigcup 
 \\ p(_{s\_name \to name, s\_phone \to phone},\pi_{s\_name, s\_phone} (\sigma_{c\_acctbal > 9500} (Supp)))$
-\item $\pi_{n\_name}(Nati\Join_{n\_nationkey = s\_nationkey}(Supp\Join_{s\_nationkey=s\_nationkey}Supp))$
+\item $\pi_{n\_name}(Nati\Join_{n\_nationkey = s\_nationkey}(Supp\Join_{s\_nationkey=SuppB.s\_nationkey}p(_{Supp\to SuppB}, Supp))$
 \end{enumerate}
 %\section{}
 %\subsection{}
