@@ -11,4 +11,5 @@ UNION ALL # and group them together with
 SELECT s_name name, s_phone phone # select s_name and s_phone, then rename them as name/phone respectively
 FROM SUPPLIER # from the supplier table
 WHERE s_acctbal > 9500 # if their balance strictly greator than 9950
+ORDER BY name, phone ASC # order by
 ;

@@ -4,7 +4,7 @@
 
 # Strategy: Simple JOIN statement between region and nation. By adding a left on the join, it'll automatically add even if nation is NULL.
 
-SELECT r.r_name, n.n_name # select the region name and nation name
+SELECT r.r_name region, n.n_name nation # select the region name and nation name
 FROM REGION r # from the region table (alias r)
 LEFT OUTER JOIN NATION n # joined on the nation table (alias n), LEFT OUTER JOIN forces the NULL result if no nations are in a region
 ON r.r_regionkey = n.n_regionkey # match the foreign keys

@@ -4,8 +4,9 @@
 
 # Strategy: This query will simply select all the parts with a few restrictions that were given
 
-SELECT * # select all columns
+SELECT p_name # select only p_name column
 FROM PART # from the table PART
 WHERE p_brand = 'Brand#42' # where the brand is 'Brand#42'
 AND	p_size BETWEEN 43 AND 47 # where size is between 43 and 47
+ORDER BY p_name ASC # order by p_name ascending
 ;

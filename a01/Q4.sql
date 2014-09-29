@@ -11,6 +11,7 @@ JOIN SUPPLIER s # joining table suppliers
 ON s.s_nationkey = n.n_nationkey # match the foreign keys on the nationkey
 GROUP BY n.n_nationkey # group the suppliers by nationkey
 HAVING COUNT(n.n_nationkey) >= 2 # and there are at least 2 different suppliers
+ORDER BY n_name ASC # order by
 ;
 
 # Part 2: Change the >= 2 to >= 7.

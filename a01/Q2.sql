@@ -10,4 +10,5 @@ JOIN NATION n # join the nation table to access the nation rows (alias 'n')
 ON c.c_nationkey = n.n_nationkey # match the foreign key
 WHERE c_acctbal < 0 # who have an account balance strictly less than 0
 AND n.n_name = 'CANADA' # who live in canada
+ORDER BY c.c_custkey, c.c_name, c.c_phone ASC # order by order
 ;
