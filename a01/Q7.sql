@@ -5,18 +5,12 @@
 
 # Strategy: Generate an intermediate query which will find the maximum balance per nation. Ensure that you use the proper RIGHT join in case there is no customer in that nation. Afterwards find that customer and LEFT join to ensure no customer case. Afterwards find the customer with that maximum balance. :) 
 
-SELECT t.nationname nation_name, c.c_name, t.maxacctbal acct_balance # select nation name, customer name, max account balance
-FROM 
-( # inner table
-	SELECT c_nationkey nationkey, MAX(c_acctbal) maxacctbal, n.n_name nationname # select nationkey, maximum account balance, nation name
-	FROM CUSTOMER c # from customer table (alias c)
-	RIGHT OUTER JOIN NATION n # right joined on nation table (alias n), RIGHT JOIN permits the NULL result when a nation doesn't have any customers
-	ON n.n_nationkey = c.c_nationkey # on foreign key nationkey
-	GROUP BY c_nationkey # grouped by nationkeys
-) t # temporary table alias as t
-LEFT OUTER JOIN CUSTOMER c # join temp table on customer table (alias c), LEFT JOIN permits the NULL results from above to continue being used
-ON t.maxacctbal = c.c_acctbal # find the customer with the maximum account balance that we found earlier
-ORDER BY nation_name, c.c_name, acct_balance ASC # order by
+SELECT n.n_name nation_name, c.c_name, MAX(c.c_acctbal) acct_balance # get the nation, name and account balance
+FROM NATION n # from table nation
+LEFT JOIN CUSTOMER c # joined onto customer c
+ON n.n_nationkey = c.c_nationkey # on foreign key
+GROUP BY n.n_nationkey # group by nationkey
+ORDER BY nation_name, c.c_name, acct_balance # order by
 ;
 
 # Part 2: My solution DOES work in the case that there is no customers due to the appropriate use of LEFT/RIGHT JOINs
