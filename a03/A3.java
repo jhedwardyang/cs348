@@ -384,6 +384,7 @@ public class A3 {
             setv(false, MATRIX_1, rs.getString(2), rs.getString(1), rs.getString(3));
         }
 
+        if(print) System.out.println("DONE");
         return true;
     }
     public static boolean sql(boolean print, String query) throws SQLException {
